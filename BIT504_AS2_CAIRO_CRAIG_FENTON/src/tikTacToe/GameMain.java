@@ -1,3 +1,4 @@
+package tikTacToe;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -57,10 +58,11 @@ public class GameMain extends JPanel implements MouseListener{
 		
 		
 		// TODO: Create a new instance of the game "Board"class. HINT check the variables above for the correct name
-
+		
+		board = new Board();
 		
 		//TODO: call the method to initialise the game board
-
+		
 	}
 	
 	public static void main(String[] args) {
@@ -70,12 +72,13 @@ public class GameMain extends JPanel implements MouseListener{
 				//create a main window to contain the panel
 				JFrame frame = new JFrame(TITLE);
 				
-				//TODO: create the new GameMain panel and add it to the frame
-						
+				//TODO: create the new GameMain panel and add it to the frame	
 				
+				frame.add(new GameMain());
+				frame.setResizable(false);
 				
-				//TODO: set the default close operation of the frame to exit_on_close
-		            
+				//TODO: set the default close operation of the frame to exit_on_close  
+				
 				
 				frame.pack();             
 				frame.setLocationRelativeTo(null);
