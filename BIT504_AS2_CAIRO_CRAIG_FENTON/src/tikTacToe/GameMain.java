@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
+// TODOS LEFT 
 
 public class GameMain extends JPanel implements MouseListener{
 	//Constants for game 
@@ -41,7 +41,7 @@ public class GameMain extends JPanel implements MouseListener{
 	public GameMain() {   
 		
 		// TODO: This JPanel fires a MouseEvent on MouseClicked so add required event listener to 'this'.          
-	    
+	   
 	    
 		// Setup the status bar (JLabel) to display status message       
 		statusBar = new JLabel("         ");       
@@ -62,7 +62,7 @@ public class GameMain extends JPanel implements MouseListener{
 		board = new Board();
 		
 		//TODO: call the method to initialise the game board
-		
+		initGame();
 	}
 	
 	public static void main(String[] args) {
@@ -79,7 +79,6 @@ public class GameMain extends JPanel implements MouseListener{
 				
 				//TODO: set the default close operation of the frame to exit_on_close  
 				
-				
 				frame.pack();             
 				frame.setLocationRelativeTo(null);
 				frame.setVisible(true);
@@ -95,17 +94,18 @@ public class GameMain extends JPanel implements MouseListener{
 		board.paint(g);
 		
 		//set status bar message
-		if (currentState == GameState.Playing) {          
+		if (currentState == GameState.Playing) { 
+			statusBar.setText("fasdf");
 			statusBar.setForeground(Color.BLACK);          
 			if (currentPlayer == Player.Cross) {   
-			
+				statusBar.setText("Player X Turn");
 				//TODO: use the status bar to display the message "X"'s Turn
 
 				
 			} else {    
 				
 				//TODO: use the status bar to display the message "O"'s Turn
-
+				statusBar.setText("Player O Turn");
 				
 			}       
 			} else if (currentState == GameState.Draw) {          
