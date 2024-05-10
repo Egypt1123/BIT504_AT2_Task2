@@ -4,6 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class GameMain extends JPanel implements MouseListener{
+	
 	// Constants for game 
 	// number of ROWS by COLS cell constants 
 	public static final int ROWS = 3;     
@@ -101,8 +102,6 @@ public class GameMain extends JPanel implements MouseListener{
 		board.paint(g);
 		
 		//set status bar message
-		System.out.println(currentPlayer);
-		System.out.println(currentState);
 		if (currentState == GameState.Playing) { 
 			statusBar.setForeground(Color.BLACK);          
 			if (currentPlayer == Player.Cross) {   
@@ -123,42 +122,42 @@ public class GameMain extends JPanel implements MouseListener{
 		}
 	
 	  /** Initialise the game-board contents and the current status of GameState and Player) */
-		public void initGame() {
+	public void initGame() {
 			
-			for (int row = 0; row < ROWS; ++row) {          
-				for (int col = 0; col < COLS; ++col) {  
-					// all cells empty
-					board.cells[row][col].content = Player.Empty;           
-				}
+		for (int row = 0; row < ROWS; ++row) {          
+			for (int col = 0; col < COLS; ++col) {  
+				// all cells empty
+				board.cells[row][col].content = Player.Empty;           
 			}
-			 currentState = GameState.Playing;
-			 currentPlayer = Player.Cross;
 		}
+			currentState = GameState.Playing;
+			currentPlayer = Player.Cross;
+	}
 		
-		/**After each turn check to see if the current player hasWon by putting their symbol in that position, 
-		 * If they have the GameState is set to won for that player
-		 * If no winner then isDraw is called to see if deadlock, if not GameState stays as PLAYING
-		 *   
-		 */
-		public void updateGame(Player thePlayer, int row, int col) {
+	/**After each turn check to see if the current player hasWon by putting their symbol in that position, 
+	 * If they have the GameState is set to won for that player
+	 * If no winner then isDraw is called to see if deadlock, if not GameState stays as PLAYING
+	 *   
+		*/
+	public void updateGame(Player thePlayer, int row, int col) {
 			
-			//check for win after play
-			if(board.hasWon(thePlayer, row, col)) {
-				if(thePlayer == Player.Cross) {
-					currentState = GameState.Cross_won;	
-				}else if(thePlayer == Player.Nought) {
-					currentState = GameState.Nought_won;
-				}
-			} else 
-				if (board.isDraw ()) {
-					currentState = GameState.Draw;
+		//check for win after play
+		if(board.hasWon(thePlayer, row, col)) {
+			if(thePlayer == Player.Cross) {
+				currentState = GameState.Cross_won;	
+			}else if(thePlayer == Player.Nought) {
+				currentState = GameState.Nought_won;
 			}
-			//otherwise no change to current state of playing			
+		}else 
+			if (board.isDraw ()) {
+				currentState = GameState.Draw;
 		}
+			//otherwise no change to current state of playing			
+	}
 	
-		/** Event handler for the mouse click on the JPanel. If selected cell is valid and Empty then current player is added to cell content.
-		 *  UpdateGame is called which will call the methods to check for winner or Draw. if none then GameState remains playing.
-		 *  If win or Draw then call is made to method that resets the game board.  Finally a call is made to refresh the canvas so that new symbol appears*/
+	/** Event handler for the mouse click on the JPanel. If selected cell is valid and Empty then current player is added to cell content.
+	*  UpdateGame is called which will call the methods to check for winner or Draw. if none then GameState remains playing.
+	*  If win or Draw then call is made to method that resets the game board.  Finally a call is made to refresh the canvas so that new symbol appears*/
 	public void mouseClicked(MouseEvent e) {  
 		
 	    // get the coordinates of where the click event happened            
