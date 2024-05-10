@@ -6,25 +6,26 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 public class Cell {
+	
     //content of this cell (empty, cross, nought)
 	Player content;
+	
 	//row and column of this cell
 	int row, col;
 	
 	/** Constructor to initialise this cell with the specified row and col */
 	public Cell(int row, int col) {
 
-
 		this.row = row;
 		this.col = col;
-
-
+		
+		// sets game cells to "Empty"
 		 clear();
 	}
-	
 
 	/** Paint itself on the graphics canvas, given the Graphics context g */ 
 	public void paint(Graphics g) {
+		
 		//Graphics2D allows setting of pen's stroke size
 		Graphics2D graphic2D = (Graphics2D) g;
 		graphic2D.setStroke(new BasicStroke(GameMain.SYMBOL_STROKE_WIDTH, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
@@ -47,9 +48,7 @@ public class Cell {
 	/** Set this cell's content to EMPTY */
 	public void clear() {
 
-
+		// Function used to set game cells to Player Enumeration "Empty"
 		content = Player.Empty;
-		
 	}
-		
 }
